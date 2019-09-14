@@ -15,17 +15,17 @@ class Navigation extends React.Component {
             {
                 name: '招标发布区',
                 url: '/bid/',
-                icon: 'info'
+                icon: 'bolt'
             },
             {
                 name: '任务发布区',
                 url: '/task/',
-                icon: 'info'
+                icon: 'thumbnails'
             },
             {
                 name: '报告区',
                 url: '/report/',
-                icon: 'info'
+                icon: 'file-text'
             },
             {
                 name: 'Source',
