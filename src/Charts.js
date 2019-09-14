@@ -286,11 +286,14 @@ class VideoInfoChart extends React.Component {
                         dashStyle: 'ShortDashDotDot',
                         value: avgQuality,
                         label: {
-                            text: `平均质量：${avgQuality}`,
+                            useHTML: true,
+                            text: `平均质量：${avgQuality.toFixed(2)}`,
                             style: {
                                 color: Highcharts.getOptions().colors[8],
-                                fontWeight: 'bold'
-                            }
+                                fontWeight: 'bold',
+                                backgroundColor: 'white'
+                            },
+                            y: -20
                         },
                         zIndex: 100
                     }]
