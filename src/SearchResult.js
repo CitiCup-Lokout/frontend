@@ -1,7 +1,6 @@
 import React from 'react';
 
 import config from './config';
-import ImgDefaultAvatar from './res/default-avatar.png';
 import UpList from './UpList';
 
 

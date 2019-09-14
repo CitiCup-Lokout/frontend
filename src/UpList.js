@@ -27,7 +27,7 @@ class UpList extends React.Component {
 
         this.listComponents = null;
 
-        if (props.list === null || props.list.length == 0) {
+        if (props.list === null || props.list.length === 0) {
             this.listComponents = (
                 <h3 className="uk-text-center">没有相关内容</h3>
             );
@@ -40,7 +40,7 @@ class UpList extends React.Component {
 
                 if (this.props.showRank) {
                     rankComp = (
-                        <li><span>排名 {i + this.props.startRank}</span></li>
+                        <li><span>排名 {o.Rank}</span></li>
                     );
                 }
 
@@ -56,7 +56,7 @@ class UpList extends React.Component {
                             <ul className="uk-margin-small-top uk-comment-meta uk-subnav uk-margin-remove-bottom">
                                 {rankComp}
                                 <li><span>粉丝数 {o.FansNow}</span></li>
-                                <li><span>总指数 {o.SummaryIndex.toFixed(1)}</span></li>
+                                <li><span>估值 {(o.ChannelValue === 'NaN') ? o.ChannelValue : o.ChannelValue.toFixed(1)}</span></li>
                             </ul>
                         </div>
                     </Link>

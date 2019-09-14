@@ -1,7 +1,6 @@
 import React from 'react';
 
 import config from './config';
-import ImgDefaultAvatar from './res/default-avatar.png';
 import UpList from './UpList';
 
 
@@ -27,15 +26,15 @@ class Rank extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.rankList = <UpList list={result} showRank={true} startRank={parseInt(this.state.offset)} />;
+                    this.rankList = <UpList list={result} showRank={true} />;
 
                     this.setState({ isLoaded: true });
                 }
             );
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.isLoaded == true) {
+    componentDidUpdate(_, prevState) {
+        if (prevState.isLoaded === true && this.state.isLoaded === false) {
             this.fetchRank();
         }
     }
@@ -100,14 +99,14 @@ class Rank extends React.Component {
                         <select disabled={!this.state.isLoaded} onChange={(event) => { this.changeField(event) }} value={this.state.field} className="uk-select">
                             <option value='FanNum'>按粉丝数量</option>
                             <option value='ChargesMonthly'>按本月充电数</option>
-                            <option value='ViewIncWeekly'>按本周新增播放量</option>
+                            <option value='ViewsWeekly'>按本周播放量</option>
                             <option value='FanIncIndex'>按粉丝增长指数</option>
                             <option value='WorkIndex'>按作品指数</option>
                             <option value='SummaryIndex'>按总指数</option>
                             <option value='AvgQuality'>按平均质量</option>
                         </select>
                         <input
-                            className="uk-input" type="number" placeholder="请输入排名起点...."
+                            className="uk-input" type="number" placeholder="请输入排名起点...." min="1"
                             value={this.state.offset}
                             disabled={!this.state.isLoaded}
                             onChange={(event) => {
