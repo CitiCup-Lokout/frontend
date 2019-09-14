@@ -107,7 +107,7 @@ class BasicInfoChart extends React.Component {
 
                     result.forEach(ele => {
                         let x = ele.Time * 1000,
-                            y = (ele[varName] != 'NaN') ? ele[varName] : NaN;
+                            y = (ele[varName] !== 'NaN') ? ele[varName] : NaN;
 
                         // if a video is published in the period, add it as an annotation
                         if (ele.Videos && dataType !== 'pre') {
@@ -228,11 +228,11 @@ class VideoInfoChart extends React.Component {
                 (result) => {
                     let totalQuality = 0;
                     let pts = result.map(ele => {
-                        totalQuality += (ele.Quality != 'NaN') ? ele.Quality : 0;
+                        totalQuality += (ele.Quality !== 'NaN') ? ele.Quality : 0;
 
                         return {
                             x: ele.UploadTime * 1000,
-                            y: (ele.Quality != 'NaN') ? ele.Quality : NaN,
+                            y: (ele.Quality !== 'NaN') ? ele.Quality : NaN,
                             name: ele.Topic
                         };
                     });
