@@ -26,7 +26,7 @@ class Home extends React.Component {
         } else {
             return (
                 <div className="uk-flex uk-flex-center">
-                    <div className="uk-card uk-card-transparent uk-width-1-2@m  uk-margin-medium-top">
+                    <div className="uk-card uk-card-transparent uk-width-1-2@m  uk-margin-large-top">
                         <div className="uk-card-header">
                             <h1 className="uk-text-center"><img style={{ width: '60%' }} src={ImgLogo} /></h1>
                         </div>
