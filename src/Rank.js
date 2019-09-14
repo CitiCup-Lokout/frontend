@@ -12,7 +12,7 @@ class Rank extends React.Component {
         this.state = {
             isLoaded: false,
             category: 'global',
-            field: 'AvgScore',
+            field: 'SummaryIndex',
             order: 'dec',
             offset: '1'
         };
@@ -27,7 +27,7 @@ class Rank extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.rankList = <UpList list={result} />;
+                    this.rankList = <UpList list={result} showRank={true} startRank={parseInt(this.state.offset)} />;
 
                     this.setState({ isLoaded: true });
                 }
@@ -96,10 +96,11 @@ class Rank extends React.Component {
                             <option value='movie'>影视区</option>
                             <option value='otomad'>鬼畜区</option>
                         </select>
+
                         <select disabled={!this.state.isLoaded} onChange={(event) => { this.changeField(event) }} value={this.state.field} className="uk-select">
                             <option value='FanNum'>按粉丝数量</option>
-                            <option value='AvgScore'>按综合评分</option>
-                            <option value='ChargeNum'>按充电数量</option>
+                            <option value='ChargesMonthly'>按本月充电数</option>
+                            <option value='ViewIncWeekly'>按本周新增播放量</option>
                             <option value='FanIncIndex'>按粉丝增长指数</option>
                             <option value='WorkIndex'>按作品指数</option>
                             <option value='SummaryIndex'>按总指数</option>

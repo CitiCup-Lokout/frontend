@@ -36,6 +36,13 @@ class UpList extends React.Component {
 
             for (let i = 0; i < props.list.length; i++) {
                 let o = props.list[i];
+                let rankComp = null;
+
+                if (this.props.showRank) {
+                    rankComp = (
+                        <li><span>排名 {i + this.props.startRank}</span></li>
+                    );
+                }
 
                 this.listComponents.push(
                     <Link to={`/up/${o.uid}`} key={i} className="uk-background-default uk-link-toggle uk-margin-small-bottom uk-box-shadow-medium uk-comment-primary uk-width-1-1 uk-flex uk-flex-middle">
@@ -47,8 +54,9 @@ class UpList extends React.Component {
                                 <span className="uk-link-heading">{o.Name}</span>
                             </h4>
                             <ul className="uk-margin-small-top uk-comment-meta uk-subnav uk-margin-remove-bottom">
+                                {rankComp}
                                 <li><span>粉丝数 {o.FansNow}</span></li>
-                                <li><span>评分 {o.AvgScore}</span></li>
+                                <li><span>总指数 {o.SummaryIndex.toFixed(1)}</span></li>
                             </ul>
                         </div>
                     </Link>
