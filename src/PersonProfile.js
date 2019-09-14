@@ -3,7 +3,7 @@ import React from 'react';
 import ImgDefaultAvatar from './res/default-avatar.png';
 import ImgGird from './res/gird.png';
 import config from './config';
-import { BasicInfoChart } from './Charts';
+import { BasicInfoChart, VideoInfoChart } from './Charts';
 
 
 class Avatar extends React.Component {
@@ -47,7 +47,6 @@ class PersonProfile extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    console.log(result)
                     this.profile = result
 
                     this.setState({ isLoaded: true });
@@ -69,7 +68,7 @@ class PersonProfile extends React.Component {
                                 <div className="uk-grid-small uk-flex-middle" uk-grid="true">
                                     <Avatar src={this.profile.Face} />
                                     <div className="uk-width-expand uk-margin-small-left">
-                                        <h3 className="uk-card-title uk-margin-remove-bottom">{this.profile.Name} <span class="uk-label uk-margin-small-left">未入驻</span></h3>
+                                        <h3 className="uk-card-title uk-margin-remove-bottom">{this.profile.Name} <span className="uk-label uk-margin-small-left">未入驻</span></h3>
                                         <p className="uk-margin-remove-top">简介: {this.profile.Profile}</p>
                                     </div>
                                 </div>
@@ -126,7 +125,7 @@ class PersonProfile extends React.Component {
                                     <div className="uk-width-expand@m">
                                         <ul id="tab-right-charts" className="uk-switcher">
                                             <li><BasicInfoChart uid={this.props.match.params.uid} /></li>
-                                            <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                                            <li><VideoInfoChart uid={this.props.match.params.uid} profile={this.profile} /></li>
                                             <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</li>
                                         </ul>
                                     </div>
