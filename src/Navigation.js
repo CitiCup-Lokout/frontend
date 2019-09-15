@@ -29,7 +29,7 @@ class Navigation extends React.Component {
             },
             {
                 name: 'Source',
-                url: 'https://github.com/yuehaowang',
+                url: 'https://github.com/CitiCup-Lokout',
                 icon: 'github-alt'
             }
         ];
