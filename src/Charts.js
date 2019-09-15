@@ -261,12 +261,34 @@ class BasicInfoChart extends React.Component {
                         points.push([x, y]);
                     });
 
+                    let pltLines = [];
+                    if (dataType == 'pre') {
+                        pltLines = [{
+                            color: Highcharts.getOptions().colors[8],
+                            width: 2,
+                            dashStyle: 'ShortDashDotDot',
+                            value: (new Date()).getTime(),
+                            label: {
+                                useHTML: true,
+                                text: `当前时间点`,
+                                style: {
+                                    color: Highcharts.getOptions().colors[8],
+                                    fontWeight: 'bold',
+                                    backgroundColor: 'white'
+                                },
+                                x: 10
+                            },
+                            zIndex: 1000
+                        }];
+                    }
+
                     onComplete({
                         annotations: [{
                             labels: labels
                         }],
                         xAxis: {
                             type: 'datetime',
+                            plotLines: pltLines
                         },
                         series: [{
                             type: 'area',
@@ -626,6 +648,23 @@ class EvaluationChart extends React.Component {
                     onComplete({
                         xAxis: {
                             type: 'datetime',
+                            plotLines: [{
+                                color: Highcharts.getOptions().colors[8],
+                                width: 2,
+                                dashStyle: 'ShortDashDotDot',
+                                value: (new Date()).getTime(),
+                                label: {
+                                    useHTML: true,
+                                    text: `当前时间点`,
+                                    style: {
+                                        color: Highcharts.getOptions().colors[8],
+                                        fontWeight: 'bold',
+                                        backgroundColor: 'white'
+                                    },
+                                    x: 10
+                                },
+                                zIndex: 1000
+                            }]
                         },
                         series: [{
                             type: 'area',
