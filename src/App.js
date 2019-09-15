@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import ScrollToTop from 'react-router-scroll-top'
 
 import Navigation from './Navigation';
@@ -7,8 +7,10 @@ import Footer from './Footer';
 import Home from './Home';
 import Rank from './Rank';
 import Report from './Report';
+import Bid from './Bid';
 import PersonProfile from './PersonProfile';
 import SearchResult from './SearchResult';
+import NoMatch from './NoMatch';
 
 
 function App() {
@@ -20,11 +22,15 @@ function App() {
                         <Navigation />
                     </header>
                     <main>
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/rank" component={Rank} />
-                        <Route exact path="/report" component={Report} />
-                        <Route path="/up/:uid" component={PersonProfile} />
-                        <Route path="/s/:query" component={SearchResult} />
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route exact path="/rank" component={Rank} />
+                            <Route exact path="/report" component={Report} />
+                            <Route exact path="/bid" component={Bid} />
+                            <Route path="/up/:uid" component={PersonProfile} />
+                            <Route path="/s/:query" component={SearchResult} />
+                            <Route component={NoMatch} />
+                        </Switch>
                     </main>
                 </div>
                 <footer>
