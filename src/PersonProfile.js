@@ -3,7 +3,7 @@ import React from 'react';
 import ImgDefaultAvatar from './res/default-avatar.png';
 import ImgGird from './res/gird.png';
 import config from './config';
-import { ProfileRaderChart, BasicInfoChart, VideoInfoChart, EvaluationChart } from './Charts';
+import { ProfileRaderChart, BasicInfoChart, VideoInfoChart, EvaluationChart, FansChart } from './Charts';
 
 
 class Avatar extends React.Component {
@@ -132,6 +132,7 @@ class PersonProfile extends React.Component {
                                             <li><BasicInfoChart uid={this.props.match.params.uid} /></li>
                                             <li><VideoInfoChart profile={this.profile} /></li>
                                             <li><EvaluationChart profile={this.profile} /></li>
+                                            <li><FansChart profile={this.profile} /></li>
                                         </ul>
                                     </div>
                                 </div>

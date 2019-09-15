@@ -5,20 +5,21 @@ import HighchartsReact from 'highcharts-react-official';
 import config from './config';
 import { omitString, mergeObject } from './utils';
 
-import ImgSentiAna0 from './res/sentiment_analysis/av64287119.png'
-import ImgSentiAna1 from './res/sentiment_analysis/av64611629.png'
-import ImgSentiAna2 from './res/sentiment_analysis/av65595759.png'
-import ImgSentiAna3 from './res/sentiment_analysis/av65844602.png'
-import ImgSentiAna4 from './res/sentiment_analysis/av66608963.png'
-import ImgWorldCloud0 from './res/word_cloud/av64287119.jpg'
-import ImgWorldCloud1 from './res/word_cloud/av64611629.jpg'
-import ImgWorldCloud2 from './res/word_cloud/av65595759.jpg'
-import ImgWorldCloud3 from './res/word_cloud/av65844602.jpg'
-import ImgWorldCloud4 from './res/word_cloud/av66608963.jpg'
+import ImgSentiAna0 from './res/sentiment_analysis/av64287119.png';
+import ImgSentiAna1 from './res/sentiment_analysis/av64611629.png';
+import ImgSentiAna2 from './res/sentiment_analysis/av65595759.png';
+import ImgSentiAna3 from './res/sentiment_analysis/av65844602.png';
+import ImgSentiAna4 from './res/sentiment_analysis/av66608963.png';
+import ImgWorldCloud0 from './res/word_cloud/av64287119.jpg';
+import ImgWorldCloud1 from './res/word_cloud/av64611629.jpg';
+import ImgWorldCloud2 from './res/word_cloud/av65595759.jpg';
+import ImgWorldCloud3 from './res/word_cloud/av65844602.jpg';
+import ImgWorldCloud4 from './res/word_cloud/av66608963.jpg';
+import ImgFanMap from './res/fan_map.png';
 
 require("highcharts/modules/annotations")(Highcharts);
+require("highcharts/modules/networkgraph")(Highcharts);
 require("highcharts/highcharts-more")(Highcharts);
-
 
 const danmuAnalysisFigList = {
     av64287119: {
@@ -702,19 +703,106 @@ class EvaluationChart extends React.Component {
 
                 <h3 className="uk-heading-bullet">预测</h3>
                 <ChartSwitcher
-                            items={{
-                                ChannelValue: {
-                                    chartTitle: '频道价值预测',
-                                    name: '频道价值'
-                                }
-                            }}
-                            fetchData={(_, callback) => {
-                                this.fetchData(callback);
-                            }}
-                        />
+                    items={{
+                        ChannelValue: {
+                            chartTitle: '频道价值预测',
+                            name: '频道价值'
+                        }
+                    }}
+                    fetchData={(_, callback) => {
+                        this.fetchData(callback);
+                    }}
+                />
             </div>
         );
     }
 }
 
-export { ProfileRaderChart, BasicInfoChart, VideoInfoChart, EvaluationChart };
+
+/**
+ * fans chart
+ */
+function FansChart(props) {
+    let options = {
+        title: null,
+        chart: {
+            type: 'networkgraph',
+            height: '100%'
+        },
+        plotOptions: {
+            networkgraph: {
+                keys: ['from', 'to'],
+                layoutAlgorithm: {
+                    enableSimulation: true,
+                    friction: -0.9
+                }
+            }
+        },
+        series: [{
+            dataLabels: {
+                enabled: true,
+                linkFormat: ''
+            },
+            id: 'lang-tree',
+            data: [
+                ['Proto Indo-European', 'Balto-Slavic'],
+                ['Proto Indo-European', 'Germanic'],
+                ['Proto Indo-European', 'Celtic'],
+                ['Proto Indo-European', 'Italic'],
+                ['Proto Indo-European', 'Hellenic'],
+                ['Proto Indo-European', 'Anatolian'],
+                ['Proto Indo-European', 'Indo-Iranian'],
+                ['Proto Indo-European', 'Tocharian'],
+                ['Indo-Iranian', 'Dardic'],
+                ['Indo-Iranian', 'Indic'],
+                ['Indo-Iranian', 'Iranian'],
+                ['Iranian', 'Old Persian'],
+                ['Old Persian', 'Middle Persian'],
+                ['Indic', 'Sanskrit'],
+                ['Italic', 'Osco-Umbrian'],
+                ['Italic', 'Latino-Faliscan'],
+                ['Latino-Faliscan', 'Latin'],
+                ['Celtic', 'Brythonic'],
+                ['Celtic', 'Goidelic'],
+                ['Germanic', 'North Germanic'],
+                ['Germanic', 'West Germanic'],
+                ['Germanic', 'East Germanic'],
+                ['North Germanic', 'Old Norse'],
+                ['North Germanic', 'Old Swedish'],
+                ['North Germanic', 'Old Danish'],
+                ['West Germanic', 'Old English'],
+                ['West Germanic', 'Old Frisian'],
+                ['West Germanic', 'Old Dutch'],
+                ['West Germanic', 'Old Low German'],
+                ['West Germanic', 'Old High German'],
+                ['Old Norse', 'Old Icelandic'],
+            ]
+        }]
+    };
+
+    return (
+        <div>
+            <h3 className="uk-heading-bullet">粉丝分布</h3>
+            <div className="uk-flex uk-flex-center">
+                <img className="uk-box-shadow-medium" src={ImgFanMap} />
+            </div>
+
+            <h3 className="uk-heading-bullet">百度指数</h3>
+            <div className="uk-flex uk-flex-center">
+                <a className="uk-button uk-button-primary uk-width-1-2@m uk-button-large" href={`http://index.baidu.com/v2/main/index.html#/trend/${props.profile.Name}`}>还想看？试试百度指数</a>
+            </div>
+
+            <h3 className="uk-heading-bullet">粉丝关系图</h3>
+            <div className="uk-flex uk-flex-center">
+                <HighchartsReact
+                    highcharts={Highcharts}
+                    containerProps={{ 'className': 'uk-box-shadow-medium uk-padding-small uk-background-default' }}
+                    options={options}
+                />
+            </div>
+        </div>
+    );
+}
+
+
+export { ProfileRaderChart, BasicInfoChart, VideoInfoChart, EvaluationChart, FansChart };
