@@ -26,7 +26,7 @@ class Task extends React.Component {
             let item = DataTask[i];
 
             listComp.push(
-                <article key={i} className="uk-comment uk-comment-primary">
+                <article key={i} className="uk-margin uk-comment uk-comment-primary">
                     <header className="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid="true">
                         <div className="uk-width-auto">
                             <img className="uk-comment-avatar" src={LogoSet[item.logo]} width="80" height="80" alt="" />
@@ -55,8 +55,8 @@ class Task extends React.Component {
             <div className="uk-container uk-margin-large-top">
                 <h2 className="uk-text-center">任务发布区</h2>
                 <div className="uk-container uk-margin-large-top" uk-grid="true">
-                    <div className="uk-width-1-4@m">
-                        <ul className="uk-nav uk-nav-default">
+                    <div className="uk-width-1-4">
+                        <ul className="uk-nav uk-nav-default uk-visible@m">
                             <li className="uk-active"><a href="#"><p className="switcher-large-text">总览</p></a></li>
                             <li className="uk-parent">
                                 <a href="#"><p className="switcher-large-text">软件</p></a>
@@ -76,8 +76,7 @@ class Task extends React.Component {
                             </li>
                         </ul>
                     </div>
-                    <hr className="uk-divider-vertical" />
-                    <div className="uk-width-expand@m">
+                    <div className="uk-width-1-1 uk-width-expand@m">
                         {listComp}
                     </div>
                 </div>
