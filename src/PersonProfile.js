@@ -3,7 +3,7 @@ import React from 'react';
 import ImgDefaultAvatar from './res/default-avatar.png';
 import ImgGird from './res/gird.png';
 import config from './config';
-import { ProfileRaderChart, BasicInfoChart, VideoInfoChart } from './Charts';
+import { ProfileRaderChart, BasicInfoChart, VideoInfoChart, EvaluationChart } from './Charts';
 
 
 class Avatar extends React.Component {
@@ -130,8 +130,8 @@ class PersonProfile extends React.Component {
                                     <div className="uk-width-expand@m">
                                         <ul id="tab-right-charts" className="uk-switcher">
                                             <li><BasicInfoChart uid={this.props.match.params.uid} /></li>
-                                            <li><VideoInfoChart uid={this.props.match.params.uid} profile={this.profile} /></li>
-                                            <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</li>
+                                            <li><VideoInfoChart profile={this.profile} /></li>
+                                            <li><EvaluationChart profile={this.profile} /></li>
                                         </ul>
                                     </div>
                                 </div>

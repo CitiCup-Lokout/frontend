@@ -356,7 +356,7 @@ class VideoInfoChart extends React.Component {
     }
 
     fetchVideoQuality(onComplete) {
-        fetch(`${config.API_URL}/videoQuality/${this.props.uid}`)
+        fetch(`${config.API_URL}/videoQuality/${this.props.profile.uid}`)
             .then(res => res.json())
             .then(
                 (result) => {
@@ -377,13 +377,13 @@ class VideoInfoChart extends React.Component {
     }
 
     fetchTrackedVideo(onComplete) {
-        fetch(`${config.API_URL}/trackedVideos/${this.props.uid}`)
+        fetch(`${config.API_URL}/trackedVideos/${this.props.profile.uid}`)
             .then(res => res.json())
             .then(onComplete);
     }
 
     fetchVideoData(avNum, itemKey, onComplete) {
-        fetch(`${config.API_URL}/videoChart/${this.props.uid}/${avNum}?field=${itemKey}&dataType=sum`)
+        fetch(`${config.API_URL}/videoChart/${this.props.profile.uid}/${avNum}?field=${itemKey}&dataType=sum`)
             .then(res => res.json())
             .then((result) => {
                 let pts = result.map((ele) => {
@@ -606,5 +606,76 @@ class VideoInfoChart extends React.Component {
     }
 }
 
+/**
+ * evaluation chart
+ */
+class EvaluationChart extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-export { ProfileRaderChart, BasicInfoChart, VideoInfoChart };
+    fetchData(onComplete) {
+        fetch(`${config.API_URL}/chart/${this.props.profile.uid}?field=ChannelValue&dataType=pre`)
+            .then(res => res.json())
+            .then(
+                (result) => {
+                    let points = result.map(ele => {
+                        return [ele.Time * 1000, (ele['ChannelValue'] !== 'NaN') ? ele['ChannelValue'] : NaN];
+                    });
+
+                    onComplete({
+                        xAxis: {
+                            type: 'datetime',
+                        },
+                        series: [{
+                            type: 'area',
+                            data: points,
+                            lineColor: Highcharts.getOptions().colors[1],
+                            color: Highcharts.getOptions().colors[10],
+                            fillOpacity: 0.5
+                        }],
+                        legend: {
+                            enabled: false
+                        }
+                    });
+                }
+            );
+    }
+
+    render() {
+        return (
+            <div>
+                <h3 className="uk-heading-bullet">价值测量</h3>
+                <div className="uk-padding-small">
+                    <div className="uk-grid-small" uk-grid="true">
+                        <div className="uk-width-expand" uk-leader="true">平均视频收益</div>
+                        <div>{(this.props.profile.IncomePerVideo === 'NaN') ? this.props.profile.IncomePerVideo : this.props.profile.IncomePerVideo.toFixed(2)}</div>
+                    </div>
+                    <div className="uk-grid-small" uk-grid="true">
+                        <div className="uk-width-expand" uk-leader="true">频道视频年收入</div>
+                        <div>{(this.props.profile.IncomeYearly === 'NaN') ? this.props.profile.IncomeYearly : this.props.profile.IncomeYearly.toFixed(2)}</div>
+                    </div>
+                    <div className="uk-grid-small" uk-grid="true">
+                        <div className="uk-width-expand" uk-leader="true">频道价值</div>
+                        <div>{(this.props.profile.ChannelValue === 'NaN') ? this.props.profile.ChannelValue : this.props.profile.ChannelValue.toFixed(2)}</div>
+                    </div>
+                </div>
+
+                <h3 className="uk-heading-bullet">预测</h3>
+                <ChartSwitcher
+                            items={{
+                                ChannelValue: {
+                                    chartTitle: '频道价值预测',
+                                    name: '频道价值'
+                                }
+                            }}
+                            fetchData={(_, callback) => {
+                                this.fetchData(callback);
+                            }}
+                        />
+            </div>
+        );
+    }
+}
+
+export { ProfileRaderChart, BasicInfoChart, VideoInfoChart, EvaluationChart };
