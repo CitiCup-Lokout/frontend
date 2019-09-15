@@ -8,6 +8,7 @@ import Home from './Home';
 import Rank from './Rank';
 import Report from './Report';
 import Bid from './Bid';
+import Task from './Task';
 import PersonProfile from './PersonProfile';
 import SearchResult from './SearchResult';
 import NoMatch from './NoMatch';
@@ -27,6 +28,7 @@ function App() {
                             <Route exact path="/rank" component={Rank} />
                             <Route exact path="/report" component={Report} />
                             <Route exact path="/bid" component={Bid} />
+                            <Route exact path="/task" component={Task} />
                             <Route path="/up/:uid" component={PersonProfile} />
                             <Route path="/s/:query" component={SearchResult} />
                             <Route component={NoMatch} />

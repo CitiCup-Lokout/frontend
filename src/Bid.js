@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ImgBidRelease from './res/bid_release.svg';
-import ImgTask from './res/task.svg';
 
 import DataBid from './res/bid_data.json';
 
