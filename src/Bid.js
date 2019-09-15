@@ -79,11 +79,6 @@ class Bid extends React.Component {
                         <img src={ImgBidRelease} />
                     </div>
                 </div>
-                <div className="uk-flex-middle" uk-grid="true">
-                    <div className="uk-width-expand">
-                        <img src={ImgTask} />
-                    </div>
-                </div>
             </div>
         );
     }
