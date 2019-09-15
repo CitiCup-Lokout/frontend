@@ -17,6 +17,7 @@ import ImgWorldCloud3 from './res/word_cloud/av65844602.jpg'
 import ImgWorldCloud4 from './res/word_cloud/av66608963.jpg'
 
 require("highcharts/modules/annotations")(Highcharts);
+require("highcharts/highcharts-more")(Highcharts);
 
 
 const danmuAnalysisFigList = {
@@ -42,6 +43,102 @@ const danmuAnalysisFigList = {
     }
 };
 
+const radarChartScoreTable = [
+    [250000, 500000, 750000, 1000000, 1500000, 2000000, 3000000, 4000000, 5000000],
+    [10, 20, 30, 50, 75, 100, 150, 300, 600],
+    [10000, 50000, 150000, 300000, 500000, 750000, 1000000, 2000000, 4000000],
+    [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    [10000, 50000, 150000, 300000, 500000, 750000, 1000000, 2000000, 4000000]
+];
+
+
+/**
+ * radar chart of profile
+ */
+function ProfileRaderChart(props) {
+    let scores = [1, 1, 1, 1, 1];
+
+    for (let i = 0; i < props.values.length; i++) {
+        let stages = radarChartScoreTable[i];
+        let v = props.values[i];
+
+        for (let j = 0; j < stages.length; j++) {
+            if (v > stages[0]) {
+                scores[i] += 1;
+            } else {
+                break;
+            }
+        }
+    }
+
+    let options = {
+        chart: {
+            polar: true,
+            type: 'line',
+            backgroundColor: null
+        },
+
+        title: null,
+
+        xAxis: {
+            categories: ['粉丝基数', '粉丝成长', '作品质量', '发布速度', '收入水平'],
+            tickmarkPlacement: 'on',
+            lineWidth: 0,
+            gridLineWidth: 2,
+            labels: {
+                style: {
+                    fontSize: '15px',
+                    color: '#FFFFFF'
+                }
+            }
+        },
+
+        yAxis: {
+            gridLineInterpolation: 'polygon',
+            lineWidth: 0,
+            min: 0,
+            gridLineWidth: 2,
+            title: {
+                style: {
+                    textTransform: 'uppercase'
+                }
+            },
+            labels: {
+                style: {
+                    fontSize: '15px',
+                    color: '#FFFFFF'
+                }
+            }
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        series: [{
+            data: scores,
+            pointPlacement: 'on',
+            color: Highcharts.getOptions().colors[3],
+            lineWidth: 5
+        }],
+
+        tooltip: {
+            borderWidth: 0,
+            backgroundColor: 'rgba(219,219,216,0.8)',
+            shadow: true
+        }
+    };
+
+    return (
+        <div>
+            <HighchartsReact
+                containerProps={{ 'className': 'uk-box-shadow-medium uk-padding-small' }}
+                highcharts={Highcharts}
+                options={options}
+            />
+        </div>
+    );
+}
 
 /**
  * chart switcher
@@ -508,4 +605,4 @@ class VideoInfoChart extends React.Component {
 }
 
 
-export { BasicInfoChart, VideoInfoChart };
+export { ProfileRaderChart, BasicInfoChart, VideoInfoChart };

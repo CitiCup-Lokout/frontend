@@ -3,7 +3,7 @@ import React from 'react';
 import ImgDefaultAvatar from './res/default-avatar.png';
 import ImgGird from './res/gird.png';
 import config from './config';
-import { BasicInfoChart, VideoInfoChart } from './Charts';
+import { ProfileRaderChart, BasicInfoChart, VideoInfoChart } from './Charts';
 
 
 class Avatar extends React.Component {
@@ -47,7 +47,7 @@ class PersonProfile extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.profile = result
+                    this.profile = result;
 
                     this.setState({ isLoaded: true });
                 }
@@ -60,6 +60,7 @@ class PersonProfile extends React.Component {
         };
 
         if (this.state.isLoaded) {
+            console.log(this.profile)
             return (
                 <div>
                     <div style={backgroundImageStyle} className="uk-section uk-section-small uk-section-primary uk-light uk-flex uk-flex-center">
@@ -104,8 +105,13 @@ class PersonProfile extends React.Component {
                                     </div>
                                 </div>
                             </div>
+
+                            <ProfileRaderChart values={[this.profile.FanNum, this.profile.FanIncIndex, this.profile.AvgView + this.profile.AvgScore, this.profile.RecentCound]} />
+
                             <div className="uk-card-footer uk-flex uk-flex-center">
-                                <a target="_blank" rel="noopener noreferrer" href={`https://space.bilibili.com/${this.profile.uid}`} className="uk-button uk-button-secondary uk-width-1-1">前往TA的Bilibili频道</a>
+                                <a class="uk-button uk-button-secondary" href="#"><span uk-icon="icon: star;"></span> 收藏</a>
+                                <a target="_blank" rel="noopener noreferrer" href={`https://space.bilibili.com/${this.profile.uid}`} className="uk-button uk-button-secondary uk-margin-left"><span uk-icon="icon: world;"></span> TA的频道</a>
+                                <a class="uk-button uk-button-secondary uk-margin-left" href="#"><span uk-icon="icon: mail;"></span> 私信</a>
                             </div>
                         </div>
                     </div>
