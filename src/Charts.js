@@ -5,7 +5,42 @@ import HighchartsReact from 'highcharts-react-official';
 import config from './config';
 import { omitString, mergeObject } from './utils';
 
+import ImgSentiAna0 from './res/sentiment_analysis/av64287119.png'
+import ImgSentiAna1 from './res/sentiment_analysis/av64611629.png'
+import ImgSentiAna2 from './res/sentiment_analysis/av65595759.png'
+import ImgSentiAna3 from './res/sentiment_analysis/av65844602.png'
+import ImgSentiAna4 from './res/sentiment_analysis/av66608963.png'
+import ImgWorldCloud0 from './res/word_cloud/av64287119.jpg'
+import ImgWorldCloud1 from './res/word_cloud/av64611629.jpg'
+import ImgWorldCloud2 from './res/word_cloud/av65595759.jpg'
+import ImgWorldCloud3 from './res/word_cloud/av65844602.jpg'
+import ImgWorldCloud4 from './res/word_cloud/av66608963.jpg'
+
 require("highcharts/modules/annotations")(Highcharts);
+
+
+const danmuAnalysisFigList = {
+    av64287119: {
+        sentiAna: ImgSentiAna0,
+        wordCloud: ImgWorldCloud0
+    },
+    av64611629: {
+        sentiAna: ImgSentiAna1,
+        wordCloud: ImgWorldCloud1
+    },
+    av65595759: {
+        sentiAna: ImgSentiAna2,
+        wordCloud: ImgWorldCloud2
+    },
+    av65844602: {
+        sentiAna: ImgSentiAna3,
+        wordCloud: ImgWorldCloud3
+    },
+    av66608963: {
+        sentiAna: ImgSentiAna4,
+        wordCloud: ImgWorldCloud4
+    }
+};
 
 
 /**
@@ -337,10 +372,29 @@ class VideoInfoChart extends React.Component {
 
     createTrackedVideoList(list) {
         let compList = list.map((ele, idx) => {
+            let danmuAnalysisFigComp = null;
+
+            let avId = 'av' + ele.AVNum;
+
+            if (avId in danmuAnalysisFigList) {
+                let figs = danmuAnalysisFigList[avId];
+
+                danmuAnalysisFigComp = (
+                    <div className="uk-margin-medium-top">
+                        <h5>评论情感分析/词云</h5>
+                        <div className="uk-grid-small" uk-grid="true">
+                            <div className="uk-width-1-2"><img className="uk-box-shadow-medium" src={figs.sentiAna} /></div>
+                            <div className="uk-width-1-2"><img className="uk-box-shadow-medium" src={figs.wordCloud} /></div>
+                        </div>
+                    </div>
+                );
+            }
+
             return (
                 <li key={idx} className="uk-close">
                     <a className="uk-accordion-title" href="#">
-                        {ele.Topic}
+                        <span className="uk-padding-small uk-padding-remove-left uk-padding-remove-bottom uk-padding-remove-top" uk-icon="icon: video-camera;"></span>
+                        <span>{ele.Topic}</span>
                     </a>
                     <div className="uk-accordion-content">
                         <ul className="uk-comment-meta uk-subnav uk-margin-remove-top">
@@ -378,6 +432,8 @@ class VideoInfoChart extends React.Component {
                                 this.fetchVideoData(ele.AVNum, itemKey, callback);
                             }}
                         />
+
+                        {danmuAnalysisFigComp}
                     </div>
                     <hr />
                 </li>
