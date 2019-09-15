@@ -60,7 +60,6 @@ class PersonProfile extends React.Component {
         };
 
         if (this.state.isLoaded) {
-            console.log(this.profile)
             return (
                 <div>
                     <div style={backgroundImageStyle} className="uk-section uk-section-small uk-section-primary uk-light uk-flex uk-flex-center">
@@ -106,12 +105,12 @@ class PersonProfile extends React.Component {
                                 </div>
                             </div>
 
-                            <ProfileRaderChart values={[this.profile.FanNum, this.profile.FanIncIndex, this.profile.AvgView + this.profile.AvgScore, this.profile.RecentCound]} />
+                            <ProfileRaderChart values={[this.profile.FanNum, this.profile.FanIncIndex, this.profile.AvgView + this.profile.AvgScore, this.profile.RecentCount, this.profile.IncomeYearly]} />
 
                             <div className="uk-card-footer uk-flex uk-flex-center">
-                                <a class="uk-button uk-button-secondary" href="#"><span uk-icon="icon: star;"></span> 收藏</a>
+                                <a className="uk-button uk-button-secondary" href="#"><span uk-icon="icon: star;"></span> 收藏</a>
                                 <a target="_blank" rel="noopener noreferrer" href={`https://space.bilibili.com/${this.profile.uid}`} className="uk-button uk-button-secondary uk-margin-left"><span uk-icon="icon: world;"></span> TA的频道</a>
-                                <a class="uk-button uk-button-secondary uk-margin-left" href="#"><span uk-icon="icon: mail;"></span> 私信</a>
+                                <a className="uk-button uk-button-secondary uk-margin-left" href="#"><span uk-icon="icon: mail;"></span> 私信</a>
                             </div>
                         </div>
                     </div>

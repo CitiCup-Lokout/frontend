@@ -63,7 +63,7 @@ function ProfileRaderChart(props) {
         let v = props.values[i];
 
         for (let j = 0; j < stages.length; j++) {
-            if (v > stages[0]) {
+            if (v > stages[j]) {
                 scores[i] += 1;
             } else {
                 break;
@@ -97,6 +97,7 @@ function ProfileRaderChart(props) {
             gridLineInterpolation: 'polygon',
             lineWidth: 0,
             min: 0,
+            max: 10,
             gridLineWidth: 2,
             title: {
                 style: {
@@ -130,12 +131,13 @@ function ProfileRaderChart(props) {
     };
 
     return (
-        <div>
-            <HighchartsReact
-                containerProps={{ 'className': 'uk-box-shadow-medium uk-padding-small' }}
-                highcharts={Highcharts}
-                options={options}
-            />
+        <div className="uk-flex uk-flex-center">
+            <div>
+                <HighchartsReact
+                    highcharts={Highcharts}
+                    options={options}
+                />
+            </div>
         </div>
     );
 }
