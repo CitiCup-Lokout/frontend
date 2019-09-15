@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import Home from './Home';
 import Rank from './Rank';
+import Report from './Report';
 import PersonProfile from './PersonProfile';
 import SearchResult from './SearchResult';
 
@@ -21,6 +22,7 @@ function App() {
                     <main>
                         <Route exact path="/" component={Home} />
                         <Route exact path="/rank" component={Rank} />
+                        <Route exact path="/report" component={Report} />
                         <Route path="/up/:uid" component={PersonProfile} />
                         <Route path="/s/:query" component={SearchResult} />
                     </main>

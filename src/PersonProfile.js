@@ -121,10 +121,10 @@ class PersonProfile extends React.Component {
                                 <div uk-grid="True">
                                     <div className="uk-width-auto@m">
                                         <ul className="uk-tab-left" uk-tab="connect: #tab-right-charts; animation: uk-animation-fade">
-                                            <li><a href="#"><p className="large-text">基本数据</p></a></li>
-                                            <li><a href="#"><p className="large-text">视频数据</p></a></li>
-                                            <li><a href="#"><p className="large-text">估值数据</p></a></li>
-                                            <li><a href="#"><p className="large-text">粉丝画像</p></a></li>
+                                            <li><a href="#"><p className="switcher-large-text">基本数据</p></a></li>
+                                            <li><a href="#"><p className="switcher-large-text">视频数据</p></a></li>
+                                            <li><a href="#"><p className="switcher-large-text">估值数据</p></a></li>
+                                            <li><a href="#"><p className="switcher-large-text">粉丝画像</p></a></li>
                                         </ul>
                                     </div>
                                     <div className="uk-width-expand@m">
