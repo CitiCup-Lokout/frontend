@@ -66,7 +66,7 @@ class PersonProfile extends React.Component {
                         <div style={{ maxWidth: '600px' }} className="uk-card uk-card-transparent uk-width-1-2@m uk-margin-medium-top">
                             <div className="uk-card-header">
                                 <div className="uk-grid-small uk-flex-middle" uk-grid="true">
-                                    <Avatar src={this.profile.Face} />
+                                    <Avatar src={this.profile.Face.replace('http://', 'https://')} />
                                     <div className="uk-width-expand uk-margin-small-left">
                                         <h3 className="uk-card-title uk-margin-remove-bottom">{this.profile.Name} <span className="uk-label uk-margin-small-left">未入驻</span></h3>
                                         <p className="uk-margin-remove-top">简介: {this.profile.Profile}</p>
