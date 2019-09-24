@@ -22,7 +22,15 @@ class SearchResult extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.searchResultList = <UpList list={result} />;
+                    this.searchResultList = (
+                        <UpList
+                            list={result}
+                            items={{
+                                FanNum: '粉丝数',
+                                SummaryIndex: '总指数'
+                            }}
+                        />
+                    );
 
                     this.setState({ isLoaded: true });
                 }

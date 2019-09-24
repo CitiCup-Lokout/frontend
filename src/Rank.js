@@ -4,6 +4,17 @@ import config from './config';
 import UpList from './UpList';
 
 
+const RANK_FIELD = {
+    FanNum: '粉丝数量',
+    ChargesMonthly: '本月充电数',
+    ViewsWeekly: '本周播放量',
+    FanIncIndex: '粉丝增长指数',
+    WorkIndex: '作品指数',
+    SummaryIndex: '总指数',
+    AvgQuality: '平均质量'
+};
+
+
 class Rank extends React.Component {
     constructor(props) {
         super(props);
@@ -26,7 +37,12 @@ class Rank extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.rankList = <UpList list={result} showRank={true} />;
+                    let items = {
+                        Rank: '排行'
+                    };
+                    items[this.state.field] = RANK_FIELD[this.state.field];
+
+                    this.rankList = <UpList list={result} items={items} />;
 
                     this.setState({ isLoaded: true });
                 }
@@ -74,6 +90,12 @@ class Rank extends React.Component {
             );
         }
 
+        let rank_field_list_comp = [];
+
+        for (let k in RANK_FIELD) {
+            rank_field_list_comp.push(<option key={k} value={k}>按{RANK_FIELD[k]}</option>)
+        }
+
         return (
             <div className="uk-container uk-margin-large-top">
                 <h2 className="uk-text-center">排名</h2>
@@ -97,13 +119,7 @@ class Rank extends React.Component {
                         </select>
 
                         <select disabled={!this.state.isLoaded} onChange={(event) => { this.changeField(event) }} value={this.state.field} className="uk-select">
-                            <option value='FanNum'>按粉丝数量</option>
-                            <option value='ChargesMonthly'>按本月充电数</option>
-                            <option value='ViewsWeekly'>按本周播放量</option>
-                            <option value='FanIncIndex'>按粉丝增长指数</option>
-                            <option value='WorkIndex'>按作品指数</option>
-                            <option value='SummaryIndex'>按总指数</option>
-                            <option value='AvgQuality'>按平均质量</option>
+                            {rank_field_list_comp}
                         </select>
                         <input
                             className="uk-input" type="number" placeholder="请输入排名起点...." min="1"

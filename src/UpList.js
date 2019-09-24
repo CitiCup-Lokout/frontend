@@ -36,12 +36,14 @@ class UpList extends React.Component {
 
             for (let i = 0; i < props.list.length; i++) {
                 let o = props.list[i];
-                let rankComp = null;
+                let itemsComp = [];
 
-                if (this.props.showRank) {
-                    rankComp = (
-                        <li><span>排名 {o.Rank}</span></li>
-                    );
+                if (this.props.items) {
+                    for (let k in this.props.items) {
+                        itemsComp.push(
+                            <li key={k}><span>{this.props.items[k]} {(o[k] == 'NaN') ? o[k] : parseInt(o[k])}</span></li>
+                        );
+                    }
                 }
 
                 this.listComponents.push(
@@ -54,9 +56,7 @@ class UpList extends React.Component {
                                 <span className="uk-link-heading">{o.Name}</span>
                             </h4>
                             <ul className="uk-margin-small-top uk-comment-meta uk-subnav uk-margin-remove-bottom">
-                                {rankComp}
-                                <li><span>粉丝数 {o.FansNow}</span></li>
-                                <li><span>估值 {(o.ChannelValue === 'NaN') ? o.ChannelValue : o.ChannelValue.toFixed(1)}</span></li>
+                                {itemsComp}
                             </ul>
                         </div>
                     </Link>
