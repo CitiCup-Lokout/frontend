@@ -310,7 +310,7 @@ class BasicInfoChart extends React.Component {
         return (
             <div>
                 <div className="uk-alert-primary" uk-alert="true">
-                    <a class="uk-alert-close" uk-close="true"></a>
+                    <a className="uk-alert-close" uk-close="true"></a>
                     <p>因为服务器原因，频道九月第三周数据缺失，现已恢复正常</p>
                 </div>
 
@@ -590,7 +590,7 @@ class VideoInfoChart extends React.Component {
         return (
             <div>
                 <div className="uk-alert-primary" uk-alert="true">
-                    <a class="uk-alert-close" uk-close="true"></a>
+                    <a className="uk-alert-close" uk-close="true"></a>
                     <p>因为Bilibili API变更问题，视频数据在八月底至九月初出现异常，现已恢复正常</p>
                 </div>
 
