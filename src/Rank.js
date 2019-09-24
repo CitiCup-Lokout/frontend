@@ -38,7 +38,9 @@ class Rank extends React.Component {
             .then(
                 (result) => {
                     let items = {
-                        Rank: '排行'
+                        Rank: '排行',
+                        FanNum: '粉丝数',
+                        ChannelValue: '估值'
                     };
                     items[this.state.field] = RANK_FIELD[this.state.field];
 

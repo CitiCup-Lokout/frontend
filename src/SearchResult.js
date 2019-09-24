@@ -27,7 +27,7 @@ class SearchResult extends React.Component {
                             list={result}
                             items={{
                                 FanNum: '粉丝数',
-                                SummaryIndex: '总指数'
+                                ChannelValue: '估值'
                             }}
                         />
                     );
