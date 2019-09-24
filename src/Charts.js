@@ -309,6 +309,11 @@ class BasicInfoChart extends React.Component {
     render() {
         return (
             <div>
+                <div className="uk-alert-primary" uk-alert="true">
+                    <a class="uk-alert-close" uk-close="true"></a>
+                    <p>因为服务器原因，频道九月第三周数据缺失，现已恢复正常</p>
+                </div>
+
                 <h3 className="uk-heading-bullet">新增</h3>
                 <div>
                     <ChartSwitcher
@@ -584,6 +589,11 @@ class VideoInfoChart extends React.Component {
     render() {
         return (
             <div>
+                <div className="uk-alert-primary" uk-alert="true">
+                    <a class="uk-alert-close" uk-close="true"></a>
+                    <p>因为Bilibili API变更问题，视频数据在八月底至九月初出现异常，现已恢复正常</p>
+                </div>
+
                 <h3 className="uk-heading-bullet">视频信息</h3>
                 <div>
                     <div className="uk-padding-small uk-grid-divider uk-grid-medium uk-child-width-expand@s" uk-grid="true">
