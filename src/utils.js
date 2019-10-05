@@ -32,4 +32,9 @@ function mergeObject(target, ...sources) {
     return mergeObject(target, ...sources);
 }
 
-export { omitString, mergeObject, isObject };
+function preventEventDefault(e) {
+    e.preventDefault();
+    e.stopPropagation();
+}
+
+export { omitString, mergeObject, isObject, preventEventDefault };

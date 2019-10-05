@@ -10,11 +10,30 @@ import ImgSentiAna1 from './res/sentiment_analysis/av64611629.png';
 import ImgSentiAna2 from './res/sentiment_analysis/av65595759.png';
 import ImgSentiAna3 from './res/sentiment_analysis/av65844602.png';
 import ImgSentiAna4 from './res/sentiment_analysis/av66608963.png';
+import ImgSentiAna5 from './res/sentiment_analysis/av67439251.png';
+import ImgSentiAna6 from './res/sentiment_analysis/av67904809.png';
+import ImgSentiAna7 from './res/sentiment_analysis/av68166027.png';
+import ImgSentiAna8 from './res/sentiment_analysis/av68185158.png';
+import ImgSentiAna9 from './res/sentiment_analysis/av68388445.png';
+import ImgSentiAna10 from './res/sentiment_analysis/av68759178.png';
+import ImgSentiAna11 from './res/sentiment_analysis/av68968471.png';
+import ImgSentiAna12 from './res/sentiment_analysis/av69175123.png';
+import ImgSentiAna13 from './res/sentiment_analysis/av69506429.png';
+
 import ImgWorldCloud0 from './res/word_cloud/av64287119.jpg';
 import ImgWorldCloud1 from './res/word_cloud/av64611629.jpg';
 import ImgWorldCloud2 from './res/word_cloud/av65595759.jpg';
 import ImgWorldCloud3 from './res/word_cloud/av65844602.jpg';
 import ImgWorldCloud4 from './res/word_cloud/av66608963.jpg';
+import ImgWorldCloud5 from './res/word_cloud/av67439251.jpg';
+import ImgWorldCloud6 from './res/word_cloud/av67904809.jpg';
+import ImgWorldCloud7 from './res/word_cloud/av68166027.jpg';
+import ImgWorldCloud8 from './res/word_cloud/av68185158.jpg';
+import ImgWorldCloud9 from './res/word_cloud/av68388445.jpg';
+import ImgWorldCloud10 from './res/word_cloud/av68759178.jpg';
+import ImgWorldCloud11 from './res/word_cloud/av68968471.jpg';
+import ImgWorldCloud12 from './res/word_cloud/av69175123.jpg';
+import ImgWorldCloud13 from './res/word_cloud/av69506429.jpg';
 import ImgFanMap from './res/fan_map.png';
 
 require("highcharts/modules/annotations")(Highcharts);
@@ -41,6 +60,42 @@ const danmuAnalysisFigList = {
     av66608963: {
         sentiAna: ImgSentiAna4,
         wordCloud: ImgWorldCloud4
+    },
+    av67439251: {
+        sentiAna: ImgSentiAna5,
+        wordCloud: ImgWorldCloud5
+    },
+    av67904809: {
+        sentiAna: ImgSentiAna6,
+        wordCloud: ImgWorldCloud6
+    },
+    av68166027: {
+        sentiAna: ImgSentiAna7,
+        wordCloud: ImgWorldCloud7
+    },
+    av68185158: {
+        sentiAna: ImgSentiAna8,
+        wordCloud: ImgWorldCloud8
+    },
+    av68388445: {
+        sentiAna: ImgSentiAna9,
+        wordCloud: ImgWorldCloud9
+    },
+    av68759178: {
+        sentiAna: ImgSentiAna10,
+        wordCloud: ImgWorldCloud10
+    },
+    av68968471: {
+        sentiAna: ImgSentiAna11,
+        wordCloud: ImgWorldCloud11
+    },
+    av69175123: {
+        sentiAna: ImgSentiAna12,
+        wordCloud: ImgWorldCloud12
+    },
+    av69506429: {
+        sentiAna: ImgSentiAna13,
+        wordCloud: ImgWorldCloud13
     }
 };
 
@@ -699,15 +754,15 @@ class EvaluationChart extends React.Component {
                 <div className="uk-padding-small">
                     <div className="uk-grid-small" uk-grid="true">
                         <div className="uk-width-expand" uk-leader="true">平均视频收益</div>
-                        <div>{(this.props.profile.IncomePerVideo === 'NaN') ? this.props.profile.IncomePerVideo : this.props.profile.IncomePerVideo.toFixed(2)}</div>
+                        <div>{(this.props.profile.IncomePerVideo === 'NaN') ? this.props.profile.IncomePerVideo : this.props.profile.IncomePerVideo.toFixed(2)}元</div>
                     </div>
                     <div className="uk-grid-small" uk-grid="true">
                         <div className="uk-width-expand" uk-leader="true">频道视频年收入</div>
-                        <div>{(this.props.profile.IncomeYearly === 'NaN') ? this.props.profile.IncomeYearly : this.props.profile.IncomeYearly.toFixed(2)}</div>
+                        <div>{(this.props.profile.IncomeYearly === 'NaN') ? this.props.profile.IncomeYearly : this.props.profile.IncomeYearly.toFixed(2)}元</div>
                     </div>
                     <div className="uk-grid-small" uk-grid="true">
                         <div className="uk-width-expand" uk-leader="true">频道价值</div>
-                        <div>{(this.props.profile.ChannelValue === 'NaN') ? this.props.profile.ChannelValue : this.props.profile.ChannelValue.toFixed(2)}</div>
+                        <div>{(this.props.profile.ChannelValue === 'NaN') ? this.props.profile.ChannelValue : this.props.profile.ChannelValue.toFixed(2)}元</div>
                     </div>
                 </div>
 
@@ -716,7 +771,7 @@ class EvaluationChart extends React.Component {
                     items={{
                         ChannelValue: {
                             chartTitle: '频道价值预测',
-                            name: '频道价值'
+                            name: '频道价值（元）'
                         }
                     }}
                     fetchData={(_, callback) => {

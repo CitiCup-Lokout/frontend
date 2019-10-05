@@ -3,6 +3,7 @@ import React from 'react';
 import ImgDefaultAvatar from './res/default-avatar.png';
 import ImgGird from './res/gird.png';
 import config from './config';
+import { preventEventDefault } from './utils';
 import { ProfileRaderChart, BasicInfoChart, VideoInfoChart, EvaluationChart, FansChart } from './Charts';
 
 
@@ -108,9 +109,9 @@ class PersonProfile extends React.Component {
                             <ProfileRaderChart values={[this.profile.FanNum, this.profile.FanIncIndex, this.profile.AvgView + this.profile.AvgScore, this.profile.RecentCount, this.profile.IncomeYearly]} />
 
                             <div className="uk-card-footer uk-flex uk-flex-center">
-                                <a className="uk-button uk-button-secondary" href="#"><span uk-icon="icon: star;"></span> 收藏</a>
+                                <a onClick={preventEventDefault} className="uk-button uk-button-secondary" href="#"><span uk-icon="icon: star;"></span> 收藏</a>
                                 <a target="_blank" rel="noopener noreferrer" href={`https://space.bilibili.com/${this.profile.uid}`} className="uk-button uk-button-secondary uk-margin-left"><span uk-icon="icon: world;"></span> TA的频道</a>
-                                <a className="uk-button uk-button-secondary uk-margin-left" href="#"><span uk-icon="icon: mail;"></span> 私信</a>
+                                <a onClick={preventEventDefault} className="uk-button uk-button-secondary uk-margin-left" href="#"><span uk-icon="icon: mail;"></span> 私信</a>
                             </div>
                         </div>
                     </div>
