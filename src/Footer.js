@@ -32,7 +32,7 @@ function Footer() {
             <div className="uk-text-center uk-margin-medium-top">
                 <b>&copy; Copyright 2019 Lokout Team</b>
                 <br />
-                <span>沪ICP备19032335号</span>
+                <span><a target="_blank" rel="noopener noreferrer" href="http://www.beian.miit.gov.cn/">沪ICP备19032335号</a></span>
             </div>
         </div>
     )
